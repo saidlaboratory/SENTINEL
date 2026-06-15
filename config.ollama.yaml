@@ -1,0 +1,37 @@
+app:
+  name: IAJDA
+  version: "1.8"
+  results_dir: results
+  latency_csv: results/latency_endtoend.csv
+  refusal_message: "I cannot help with that request."
+
+models:
+  nli_model: MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+
+lm_studio:
+  base_url: http://127.0.0.1:11434/v1
+  api_key: ollama
+  model: llama3.1:8b
+  timeout_seconds: 180
+  temperature: 0.2
+  max_tokens: 256
+
+thresholds:
+  intent_block_labels:
+    - adversarial
+    - harmful
+  intent_block_confidence: 0.68
+  context_block_risk: 0.68
+  embedding_similarity: 0.62
+  output_harmful_confidence: 0.62
+
+performance:
+  fast_rule_gate: true
+  skip_output_scoring_for_pre_llm_blocks: true
+
+normalization:
+  max_rounds: 8
+
+logging:
+  level: INFO

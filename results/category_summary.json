@@ -1,0 +1,62 @@
+{
+  "agent_delegation": {
+    "count": 14,
+    "blocked": 4,
+    "block_rate": 0.2857142857142857,
+    "false_positives": 0
+  },
+  "benign": {
+    "count": 100,
+    "blocked": 5,
+    "block_rate": 0.05,
+    "false_positives": 5
+  },
+  "context_manipulation": {
+    "count": 14,
+    "blocked": 8,
+    "block_rate": 0.5714285714285714,
+    "false_positives": 0
+  },
+  "direct_harmful": {
+    "count": 14,
+    "blocked": 6,
+    "block_rate": 0.42857142857142855,
+    "false_positives": 0
+  },
+  "encoded_obfuscation": {
+    "count": 14,
+    "blocked": 9,
+    "block_rate": 0.6428571428571429,
+    "false_positives": 0
+  },
+  "indirect_injection": {
+    "count": 14,
+    "blocked": 12,
+    "block_rate": 0.8571428571428571,
+    "false_positives": 0
+  },
+  "multi_step_escalation": {
+    "count": 14,
+    "blocked": 6,
+    "block_rate": 0.42857142857142855,
+    "false_positives": 0
+  },
+  "prompt_injection": {
+    "count": 14,
+    "blocked": 4,
+    "block_rate": 0.2857142857142857,
+    "false_positives": 0
+  },
+  "prompt_leakage": {
+    "count": 14,
+    "blocked": 3,
+    "block_rate": 0.21428571428571427,
+    "false_positives": 0
+  },
+  "roleplay_persona": {
+    "count": 14,
+    "blocked": 10,
+    "block_rate": 0.7142857142857143,
+    "false_positives": 0
+  }
+}

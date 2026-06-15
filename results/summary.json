@@ -1,0 +1,10 @@
+{
+  "total_prompts": 226,
+  "attack_prompts": 126,
+  "benign_prompts": 100,
+  "block_rate": 0.29646017699115046,
+  "attack_success_rate": 0.5079365079365079,
+  "false_positive_count": 5,
+  "false_positive_rate": 0.05,
+  "average_latency_ms": 418.0857079646018
+}

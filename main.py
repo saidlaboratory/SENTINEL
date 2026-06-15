@@ -285,6 +285,7 @@ class IAJDAPipeline:
                 "output": output_result,
                 "blocked_before_llm": pre_llm_blocked,
                 "latency": timings,
+                "refusal_message": str(self.config["app"]["refusal_message"]),
             }
 
         start = time.perf_counter()
@@ -329,6 +330,122 @@ class IAJDAPipeline:
             "output": output_result,
             "blocked_before_llm": pre_llm_blocked,
             "latency": timings,
+            "refusal_message": str(self.config["app"]["refusal_message"]),
+        }
+
+    def evaluate(
+        self,
+        prompt: str,
+        *,
+        enabled_layers: frozenset[int] | None = None,
+        skip_llm: bool = False,
+        record_latency: bool = False,
+    ) -> dict[str, Any]:
+        """Evaluate a prompt with optional layer ablation and offline LLM skip."""
+        layers = enabled_layers if enabled_layers is not None else frozenset({1, 2, 3, 4, 5})
+        refusal_message = str(self.config["app"]["refusal_message"])
+        total_start = time.perf_counter()
+        timings: dict[str, float] = {
+            "layer1_ms": 0.0,
+            "layer2_ms": 0.0,
+            "layer3_ms": 0.0,
+            "layer4_ms": 0.0,
+            "layer5_ms": 0.0,
+        }
+
+        intent_result: dict[str, float | str | bool] = {
+            "label": "skipped",
+            "confidence": 0.0,
+            "blocked": False,
+        }
+        output_result: dict[str, float | str | bool] = {
+            "label": "skipped",
+            "confidence": 0.0,
+            "blocked": False,
+            "response": refusal_message,
+        }
+
+        if 2 in layers:
+            start = time.perf_counter()
+            normalized = self.normalizer.normalize(prompt)
+            timings["layer2_ms"] = self._elapsed_ms(start)
+        else:
+            normalized = {"normalized": prompt, "transformations": []}
+
+        normalized_prompt = str(normalized["normalized"])
+        transformations = [str(item) for item in normalized.get("transformations", [])]
+        context_result: dict[str, Any] = {
+            "blocked": False,
+            "risk_score": 0.0,
+            "rule_hits": [],
+            "matched_template": None,
+        }
+
+        if 3 in layers and self.fast_rule_gate:
+            start = time.perf_counter()
+            fast_context_result = self.context.verify_rules(
+                normalized_prompt,
+                transformations,
+            )
+            timings["layer3_ms"] = self._elapsed_ms(start)
+            if bool(fast_context_result["blocked"]):
+                context_result = fast_context_result
+                timings["total_ms"] = self._elapsed_ms(total_start)
+                return {
+                    "final_response": refusal_message,
+                    "intent": intent_result,
+                    "normalization": normalized,
+                    "context": context_result,
+                    "output": output_result,
+                    "blocked_before_llm": True,
+                    "latency": timings,
+                    "refusal_message": refusal_message,
+                }
+
+        if 1 in layers:
+            start = time.perf_counter()
+            intent_result = self.intent.classify(prompt)
+            timings["layer1_ms"] = self._elapsed_ms(start)
+
+        if 3 in layers:
+            start = time.perf_counter()
+            context_result = self.context.verify(normalized_prompt, transformations)
+            timings["layer3_ms"] += self._elapsed_ms(start)
+
+        pre_llm_blocked = bool(intent_result["blocked"]) or bool(context_result["blocked"])
+        raw_response = refusal_message if pre_llm_blocked else ""
+
+        if not pre_llm_blocked and 4 in layers and not skip_llm:
+            start = time.perf_counter()
+            raw_response = self.llm.generate(normalized_prompt)
+            timings["layer4_ms"] = self._elapsed_ms(start)
+        elif not pre_llm_blocked:
+            raw_response = "[LLM_SKIPPED_FOR_EVAL]"
+
+        if pre_llm_blocked:
+            output_result["response"] = raw_response
+        elif 5 in layers and 4 in layers and not skip_llm:
+            start = time.perf_counter()
+            output_result = self.output_scorer.score(raw_response)
+            timings["layer5_ms"] = self._elapsed_ms(start)
+        elif 5 in layers and skip_llm and not pre_llm_blocked:
+            output_result["response"] = raw_response
+        else:
+            output_result["response"] = raw_response
+
+        timings["total_ms"] = self._elapsed_ms(total_start)
+        if record_latency:
+            self._write_latency(prompt, timings)
+
+        return {
+            "final_response": str(output_result["response"]),
+            "intent": intent_result,
+            "normalization": normalized,
+            "context": context_result,
+            "output": output_result,
+            "blocked_before_llm": pre_llm_blocked,
+            "latency": timings,
+            "refusal_message": refusal_message,
         }
 
     @staticmethod

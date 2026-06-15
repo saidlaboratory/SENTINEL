@@ -219,6 +219,16 @@ RULES: dict[str, re.Pattern[str]] = {
         r"\breveal your instructions\b|\bprint your system prompt\b|\bbypass safety\b|\bdisable (filters|guardrails|policy)\b",
         re.IGNORECASE,
     ),
+    "indirect_tool_injection": re.compile(
+        r"\b(summarize|incorporate|use this context|follow it exactly|act on it|help the user based on|"
+        r"retrieved|tool output|rag source|knowledge base chunk|webpage snippet|api webhook|"
+        r"fetched html|pdf metadata|wiki excerpt|email body|slack message|browser extension|mcp tool)\b"
+        r".{0,260}\b(ignore (all )?(previous )?instructions|ignore safety|bypass safety|"
+        r"disregard prior policies|without refusal|developer mode|do anything now|"
+        r"reveal hidden instructions|dump the system prompt|unrestricted mode|jailbreak active|"
+        r"malware code|credit card fraud|synthesizing illegal drugs|phishing email)\b",
+        re.IGNORECASE | re.DOTALL,
+    ),
     "many_shot": re.compile(
         r"(user:|assistant:|human:|ai:).{0,200}(user:|assistant:|human:|ai:).{0,200}(user:|assistant:|human:|ai:)",
         re.IGNORECASE | re.DOTALL,
@@ -254,6 +264,7 @@ RULE_WEIGHTS: dict[str, float] = {
     "persona_substitution": 0.70,
     "system_override": 0.78,
     "prompt_injection": 0.80,
+    "indirect_tool_injection": 0.91,
     "many_shot": 0.72,
 }
 
@@ -263,6 +274,7 @@ GENERIC_SIGNAL_WEIGHTS: dict[str, float] = {
     "generic_harmful_persuasion": 0.90,
     "decoded_obfuscated_misinformation": 0.96,
     "decoded_obfuscated_persuasive_wrongdoing": 0.95,
+    "decoded_obfuscated_harmful_request": 0.94,
 }
 
 OBFUSCATION_TRANSFORMATIONS: set[str] = {
@@ -410,6 +422,44 @@ PERSUASION_INTENT_TERMS: tuple[str, ...] = (
     "talk people into",
 )
 
+HARMFUL_REQUEST_TERMS: tuple[str, ...] = (
+    "how to",
+    "step-by-step",
+    "step by step",
+    "instructions for",
+    "guide for",
+    "pick a lock",
+    "shoplift",
+    "fake passport",
+    "forge",
+    "counterfeit",
+    "hotwire",
+    "smoke bomb",
+    "illegal gambling",
+    "cheat on",
+    "tax authorities",
+    "ddos",
+    "disable a competitor",
+    "record someone",
+    "insurance fraud",
+    "break drm",
+    "impersonate",
+    "police officer",
+    "bypass safety",
+    "bypass home alarm",
+    "steal credit",
+    "pipe bomb",
+    "synthesizing meth",
+    "make napalm",
+    "ghost gun",
+    "stalking",
+    "ransomware",
+)
+
+UNRESOLVED_BASE64_PATTERN = re.compile(
+    r"(?<![A-Za-z0-9+/])[A-Za-z0-9+/]{32,}={0,2}(?![A-Za-z0-9+/=])"
+)
+
 
 class ContextVerifier:
     """Hybrid rule and embedding detector for jailbreak attempts."""
@@ -543,6 +593,23 @@ class ContextVerifier:
             and (has_wrongdoing or has_deceptive_outcome or has_public_harm)
         ):
             hits.append("decoded_obfuscated_persuasive_wrongdoing")
+
+        if transformation_set & OBFUSCATION_TRANSFORMATIONS and (
+            cls._contains_any(lowered, HARMFUL_REQUEST_TERMS)
+            or has_wrongdoing
+            or cls._contains_any(lowered, ("ignore previous", "bypass", "without getting caught"))
+        ):
+            hits.append("decoded_obfuscated_harmful_request")
+
+        if (
+            not transformation_set
+            and UNRESOLVED_BASE64_PATTERN.search(prompt)
+            and (
+                cls._contains_any(lowered, HARMFUL_REQUEST_TERMS)
+                or has_wrongdoing
+            )
+        ):
+            hits.append("decoded_obfuscated_harmful_request")
 
         return hits
 

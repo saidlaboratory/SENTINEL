@@ -1,0 +1,609 @@
+{
+  "track_a": {
+    "ablation_l1_l3_attack_block": {
+      "agent_delegation": {
+        "count": 14,
+        "blocked": 4,
+        "block_rate": 0.2857142857142857,
+        "false_positives": 0
+      },
+      "benign": {
+        "count": 100,
+        "blocked": 5,
+        "block_rate": 0.05,
+        "false_positives": 5
+      },
+      "context_manipulation": {
+        "count": 14,
+        "blocked": 8,
+        "block_rate": 0.5714285714285714,
+        "false_positives": 0
+      },
+      "direct_harmful": {
+        "count": 14,
+        "blocked": 6,
+        "block_rate": 0.42857142857142855,
+        "false_positives": 0
+      },
+      "encoded_obfuscation": {
+        "count": 14,
+        "blocked": 9,
+        "block_rate": 0.6428571428571429,
+        "false_positives": 0
+      },
+      "indirect_injection": {
+        "count": 14,
+        "blocked": 12,
+        "block_rate": 0.8571428571428571,
+        "false_positives": 0
+      },
+      "multi_step_escalation": {
+        "count": 14,
+        "blocked": 6,
+        "block_rate": 0.42857142857142855,
+        "false_positives": 0
+      },
+      "prompt_injection": {
+        "count": 14,
+        "blocked": 4,
+        "block_rate": 0.2857142857142857,
+        "false_positives": 0
+      },
+      "prompt_leakage": {
+        "count": 14,
+        "blocked": 3,
+        "block_rate": 0.21428571428571427,
+        "false_positives": 0
+      },
+      "roleplay_persona": {
+        "count": 14,
+        "blocked": 10,
+        "block_rate": 0.7142857142857143,
+        "false_positives": 0
+      }
+    },
+    "baselines": {
+      "keyword_baseline": {
+        "categories": {
+          "agent_delegation": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "benign": {
+            "count": 100,
+            "blocked": 0,
+            "block_rate": 0.0,
+            "false_positives": 0
+          },
+          "context_manipulation": {
+            "count": 14,
+            "blocked": 1,
+            "block_rate": 0.07142857142857142,
+            "false_positives": 0
+          },
+          "direct_harmful": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "encoded_obfuscation": {
+            "count": 14,
+            "blocked": 0,
+            "block_rate": 0.0,
+            "false_positives": 0
+          },
+          "indirect_injection": {
+            "count": 14,
+            "blocked": 7,
+            "block_rate": 0.5,
+            "false_positives": 0
+          },
+          "multi_step_escalation": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "prompt_injection": {
+            "count": 14,
+            "blocked": 3,
+            "block_rate": 0.21428571428571427,
+            "false_positives": 0
+          },
+          "prompt_leakage": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "roleplay_persona": {
+            "count": 14,
+            "blocked": 5,
+            "block_rate": 0.35714285714285715,
+            "false_positives": 0
+          }
+        },
+        "attack_block_rate": 0.19047619047619047,
+        "false_positive_rate": 0.0
+      },
+      "l1_only": {
+        "categories": {
+          "agent_delegation": {
+            "count": 14,
+            "blocked": 1,
+            "block_rate": 0.07142857142857142,
+            "false_positives": 0
+          },
+          "benign": {
+            "count": 100,
+            "blocked": 4,
+            "block_rate": 0.04,
+            "false_positives": 4
+          },
+          "context_manipulation": {
+            "count": 14,
+            "blocked": 7,
+            "block_rate": 0.5,
+            "false_positives": 0
+          },
+          "direct_harmful": {
+            "count": 14,
+            "blocked": 5,
+            "block_rate": 0.35714285714285715,
+            "false_positives": 0
+          },
+          "encoded_obfuscation": {
+            "count": 14,
+            "blocked": 0,
+            "block_rate": 0.0,
+            "false_positives": 0
+          },
+          "indirect_injection": {
+            "count": 14,
+            "blocked": 3,
+            "block_rate": 0.21428571428571427,
+            "false_positives": 0
+          },
+          "multi_step_escalation": {
+            "count": 14,
+            "blocked": 4,
+            "block_rate": 0.2857142857142857,
+            "false_positives": 0
+          },
+          "prompt_injection": {
+            "count": 14,
+            "blocked": 0,
+            "block_rate": 0.0,
+            "false_positives": 0
+          },
+          "prompt_leakage": {
+            "count": 14,
+            "blocked": 1,
+            "block_rate": 0.07142857142857142,
+            "false_positives": 0
+          },
+          "roleplay_persona": {
+            "count": 14,
+            "blocked": 5,
+            "block_rate": 0.35714285714285715,
+            "false_positives": 0
+          }
+        },
+        "attack_block_rate": 0.20634920634920634,
+        "false_positive_rate": 0.04
+      },
+      "l2_l3": {
+        "categories": {
+          "agent_delegation": {
+            "count": 14,
+            "blocked": 3,
+            "block_rate": 0.21428571428571427,
+            "false_positives": 0
+          },
+          "benign": {
+            "count": 100,
+            "blocked": 1,
+            "block_rate": 0.01,
+            "false_positives": 1
+          },
+          "context_manipulation": {
+            "count": 14,
+            "blocked": 3,
+            "block_rate": 0.21428571428571427,
+            "false_positives": 0
+          },
+          "direct_harmful": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "encoded_obfuscation": {
+            "count": 14,
+            "blocked": 9,
+            "block_rate": 0.6428571428571429,
+            "false_positives": 0
+          },
+          "indirect_injection": {
+            "count": 14,
+            "blocked": 12,
+            "block_rate": 0.8571428571428571,
+            "false_positives": 0
+          },
+          "multi_step_escalation": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "prompt_injection": {
+            "count": 14,
+            "blocked": 4,
+            "block_rate": 0.2857142857142857,
+            "false_positives": 0
+          },
+          "prompt_leakage": {
+            "count": 14,
+            "blocked": 2,
+            "block_rate": 0.14285714285714285,
+            "false_positives": 0
+          },
+          "roleplay_persona": {
+            "count": 14,
+            "blocked": 8,
+            "block_rate": 0.5714285714285714,
+            "false_positives": 0
+          }
+        },
+        "attack_block_rate": 0.35714285714285715,
+        "false_positive_rate": 0.01
+      },
+      "sentinel_l1_l3": {
+        "categories": {
+          "agent_delegation": {
+            "count": 14,
+            "blocked": 4,
+            "block_rate": 0.2857142857142857,
+            "false_positives": 0
+          },
+          "benign": {
+            "count": 100,
+            "blocked": 5,
+            "block_rate": 0.05,
+            "false_positives": 5
+          },
+          "context_manipulation": {
+            "count": 14,
+            "blocked": 8,
+            "block_rate": 0.5714285714285714,
+            "false_positives": 0
+          },
+          "direct_harmful": {
+            "count": 14,
+            "blocked": 6,
+            "block_rate": 0.42857142857142855,
+            "false_positives": 0
+          },
+          "encoded_obfuscation": {
+            "count": 14,
+            "blocked": 9,
+            "block_rate": 0.6428571428571429,
+            "false_positives": 0
+          },
+          "indirect_injection": {
+            "count": 14,
+            "blocked": 12,
+            "block_rate": 0.8571428571428571,
+            "false_positives": 0
+          },
+          "multi_step_escalation": {
+            "count": 14,
+            "blocked": 6,
+            "block_rate": 0.42857142857142855,
+            "false_positives": 0
+          },
+          "prompt_injection": {
+            "count": 14,
+            "blocked": 4,
+            "block_rate": 0.2857142857142857,
+            "false_positives": 0
+          },
+          "prompt_leakage": {
+            "count": 14,
+            "blocked": 3,
+            "block_rate": 0.21428571428571427,
+            "false_positives": 0
+          },
+          "roleplay_persona": {
+            "count": 14,
+            "blocked": 10,
+            "block_rate": 0.7142857142857143,
+            "false_positives": 0
+          }
+        },
+        "attack_block_rate": 0.49206349206349204,
+        "false_positive_rate": 0.05
+      }
+    },
+    "benchmark": {
+      "total_prompts": 226,
+      "attack_prompts": 126,
+      "benign_prompts": 100,
+      "block_rate": 0.29646017699115046,
+      "attack_success_rate": 0.5079365079365079,
+      "false_positive_count": 5,
+      "false_positive_rate": 0.05,
+      "average_latency_ms": 418.0857079646018
+    }
+  },
+  "track_b": {
+    "model": "llama3.1:8b",
+    "config": "/Users/buno/Documents/coding/saidlaboratory/SENTINEL/config.ollama.yaml",
+    "completed_prompts": 226,
+    "baseline": {
+      "total_prompts": 227,
+      "attack_prompts": 126,
+      "benign_prompts": 101,
+      "attack_success_rate": 0.1984126984126984,
+      "attack_block_rate": 0.8015873015873016,
+      "false_positive_count": 0,
+      "false_positive_rate": 0.0,
+      "categories": {
+        "agent_delegation": {
+          "count": 14,
+          "blocked": 14,
+          "block_rate": 1.0,
+          "false_positives": 0
+        },
+        "benign": {
+          "count": 101,
+          "blocked": 0,
+          "block_rate": 0.0,
+          "false_positives": 0
+        },
+        "context_manipulation": {
+          "count": 14,
+          "blocked": 11,
+          "block_rate": 0.7857142857142857,
+          "false_positives": 0
+        },
+        "direct_harmful": {
+          "count": 14,
+          "blocked": 14,
+          "block_rate": 1.0,
+          "false_positives": 0
+        },
+        "encoded_obfuscation": {
+          "count": 14,
+          "blocked": 14,
+          "block_rate": 1.0,
+          "false_positives": 0
+        },
+        "indirect_injection": {
+          "count": 14,
+          "blocked": 12,
+          "block_rate": 0.8571428571428571,
+          "false_positives": 0
+        },
+        "multi_step_escalation": {
+          "count": 14,
+          "blocked": 12,
+          "block_rate": 0.8571428571428571,
+          "false_positives": 0
+        },
+        "prompt_injection": {
+          "count": 14,
+          "blocked": 9,
+          "block_rate": 0.6428571428571429,
+          "false_positives": 0
+        },
+        "prompt_leakage": {
+          "count": 14,
+          "blocked": 2,
+          "block_rate": 0.14285714285714285,
+          "false_positives": 0
+        },
+        "roleplay_persona": {
+          "count": 14,
+          "blocked": 13,
+          "block_rate": 0.9285714285714286,
+          "false_positives": 0
+        }
+      }
+    },
+    "sentinel": {
+      "total_prompts": 226,
+      "attack_prompts": 126,
+      "benign_prompts": 100,
+      "attack_success_rate": 0.09523809523809523,
+      "attack_block_rate": 0.5634920634920635,
+      "layer_attributed_block_rate": 0.5634920634920635,
+      "incremental_block_rate": 0.10317460317460317,
+      "incremental_block_count": 13,
+      "end_to_end_block_rate": 0.9047619047619048,
+      "true_asr_rate": 0.09523809523809523,
+      "false_positive_count": 10,
+      "false_positive_rate": 0.1,
+      "categories": {
+        "agent_delegation": {
+          "count": 14,
+          "blocked": 5,
+          "block_rate": 0.35714285714285715,
+          "false_positives": 0
+        },
+        "benign": {
+          "count": 100,
+          "blocked": 10,
+          "block_rate": 0.1,
+          "false_positives": 10
+        },
+        "context_manipulation": {
+          "count": 14,
+          "blocked": 9,
+          "block_rate": 0.6428571428571429,
+          "false_positives": 0
+        },
+        "direct_harmful": {
+          "count": 14,
+          "blocked": 7,
+          "block_rate": 0.5,
+          "false_positives": 0
+        },
+        "encoded_obfuscation": {
+          "count": 14,
+          "blocked": 9,
+          "block_rate": 0.6428571428571429,
+          "false_positives": 0
+        },
+        "indirect_injection": {
+          "count": 14,
+          "blocked": 12,
+          "block_rate": 0.8571428571428571,
+          "false_positives": 0
+        },
+        "multi_step_escalation": {
+          "count": 14,
+          "blocked": 7,
+          "block_rate": 0.5,
+          "false_positives": 0
+        },
+        "prompt_injection": {
+          "count": 14,
+          "blocked": 6,
+          "block_rate": 0.42857142857142855,
+          "false_positives": 0
+        },
+        "prompt_leakage": {
+          "count": 14,
+          "blocked": 6,
+          "block_rate": 0.42857142857142855,
+          "false_positives": 0
+        },
+        "roleplay_persona": {
+          "count": 14,
+          "blocked": 10,
+          "block_rate": 0.7142857142857143,
+          "false_positives": 0
+        }
+      },
+      "average_latency_ms": 9628.83982300885
+    },
+    "attribution": {
+      "attack_prompts": 126,
+      "outcomes": {
+        "incremental": 13,
+        "layer_redundant": 58,
+        "alignment_only": 43,
+        "true_asr": 12
+      },
+      "incremental_block_count": 13,
+      "incremental_block_rate": 0.10317460317460317,
+      "layer_attributed_block_count": 71,
+      "layer_attributed_block_rate": 0.5634920634920635,
+      "pre_llm_layer_block_count": 62,
+      "pre_llm_layer_block_rate": 0.49206349206349204,
+      "layer_redundant_count": 58,
+      "layer_redundant_rate": 0.4603174603174603,
+      "alignment_only_count": 43,
+      "alignment_only_rate": 0.3412698412698413,
+      "true_asr_count": 12,
+      "true_asr_rate": 0.09523809523809523,
+      "layer_blocks_by_layer": {
+        "L3_fast": 45,
+        "L5": 9,
+        "L1": 17
+      },
+      "categories": {
+        "agent_delegation": {
+          "count": 14,
+          "layer_blocks": 5,
+          "layer_block_rate": 0.35714285714285715,
+          "incremental_blocks": 0,
+          "incremental_block_rate": 0.0,
+          "true_asr_count": 0,
+          "true_asr_rate": 0.0
+        },
+        "context_manipulation": {
+          "count": 14,
+          "layer_blocks": 9,
+          "layer_block_rate": 0.6428571428571429,
+          "incremental_blocks": 1,
+          "incremental_block_rate": 0.07142857142857142,
+          "true_asr_count": 2,
+          "true_asr_rate": 0.14285714285714285
+        },
+        "direct_harmful": {
+          "count": 14,
+          "layer_blocks": 7,
+          "layer_block_rate": 0.5,
+          "incremental_blocks": 0,
+          "incremental_block_rate": 0.0,
+          "true_asr_count": 0,
+          "true_asr_rate": 0.0
+        },
+        "encoded_obfuscation": {
+          "count": 14,
+          "layer_blocks": 9,
+          "layer_block_rate": 0.6428571428571429,
+          "incremental_blocks": 0,
+          "incremental_block_rate": 0.0,
+          "true_asr_count": 0,
+          "true_asr_rate": 0.0
+        },
+        "indirect_injection": {
+          "count": 14,
+          "layer_blocks": 12,
+          "layer_block_rate": 0.8571428571428571,
+          "incremental_blocks": 1,
+          "incremental_block_rate": 0.07142857142857142,
+          "true_asr_count": 1,
+          "true_asr_rate": 0.07142857142857142
+        },
+        "multi_step_escalation": {
+          "count": 14,
+          "layer_blocks": 7,
+          "layer_block_rate": 0.5,
+          "incremental_blocks": 1,
+          "incremental_block_rate": 0.07142857142857142,
+          "true_asr_count": 1,
+          "true_asr_rate": 0.07142857142857142
+        },
+        "prompt_injection": {
+          "count": 14,
+          "layer_blocks": 6,
+          "layer_block_rate": 0.42857142857142855,
+          "incremental_blocks": 3,
+          "incremental_block_rate": 0.21428571428571427,
+          "true_asr_count": 2,
+          "true_asr_rate": 0.14285714285714285
+        },
+        "prompt_leakage": {
+          "count": 14,
+          "layer_blocks": 6,
+          "layer_block_rate": 0.42857142857142855,
+          "incremental_blocks": 6,
+          "incremental_block_rate": 0.42857142857142855,
+          "true_asr_count": 6,
+          "true_asr_rate": 0.42857142857142855
+        },
+        "roleplay_persona": {
+          "count": 14,
+          "layer_blocks": 10,
+          "layer_block_rate": 0.7142857142857143,
+          "incremental_blocks": 1,
+          "incremental_block_rate": 0.07142857142857142,
+          "true_asr_count": 0,
+          "true_asr_rate": 0.0
+        }
+      }
+    },
+    "blocking_layers": {
+      "L3_fast": 45,
+      "L5": 9,
+      "L1": 17
+    }
+  }
+}

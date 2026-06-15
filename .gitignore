@@ -1,0 +1,76 @@
+#PRODUCTION
+PRODUCTION.md
+CHANGE.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Testing & type checking
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (user-specific; commit .vscode/extensions.json if shared)
+.idea/
+*.swp
+*.swo
+*~
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Nested LaTeX output from misconfigured outdir
+paper/paper/
+
+# Runtime / monitor logs (keep results/*.json and *.csv)
+results/*.log
+results/monitor.log
+results/endtoend_run.log
+
+# Local model caches (downloaded on first run)
+.cache/
+models/
+*.gguf
+*.bin
+
+# Hugging Face hub cache (if ever set inside repo)
+.huggingface/
