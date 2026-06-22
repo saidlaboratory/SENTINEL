@@ -41,7 +41,7 @@ This repository is the **official implementation and evaluation artifact** for t
 
 > **SENTINEL: Trustworthy Guardrails for Web-Agent LLM Services**  
 > Simarjot Singh Maan\* and Quang Bui\* · Scientific AI for Development (SAID) Laboratory  
-> *25th IEEE/WIC International Conference on Web Intelligence and Intelligent Agent Technology (WI-IAT 2026)*
+> 
 
 | Artifact | Description |
 |----------|-------------|
@@ -237,8 +237,6 @@ If you use this code, benchmark, or reference the SENTINEL architecture, please 
 @inproceedings{maan2026sentinel,
   author    = {Maan, Simarjot Singh and Bui, Quang},
   title     = {{SENTINEL}: Trustworthy Guardrails for Web-Agent {LLM} Services},
-  booktitle = {Proceedings of the 25th IEEE/WIC International Conference on
-               Web Intelligence and Intelligent Agent Technology (WI-IAT)},
   year      = {2026},
   note      = {Scientific AI for Development (SAID) Laboratory}
 }
