@@ -158,6 +158,16 @@ cd paper && latexmk -pdf final-paper.tex
 pytest tests/
 ```
 
+### 6. AutoDefense baseline (optional)
+
+[`autodefense_repro/`](autodefense_repro/README.md) evaluates the AutoDefense multi-agent
+defense on the same 226 prompts, same model, and same `is_refusal` metric, entirely locally
+(no OpenAI, no GPT-4 evaluator). Regenerate the comparison table from the committed run with:
+
+```bash
+python autodefense_repro/scripts/eval_repro.py
+```
+
 ---
 
 ## Repository layout
@@ -181,6 +191,7 @@ SENTINEL/
 ├── results/                    # Evaluation outputs (JSON/CSV)
 ├── paper/                      # Paper source, figures, PDF
 ├── scripts/                    # LM Studio setup, Track B monitor
+├── autodefense_repro/          # AutoDefense baseline on the same 226 prompts
 ├── PRODUCTION.md               # Roadmap from research prototype → deployment
 └── CHANGE.md                   # Changelog vs. initial upstream release
 ```
